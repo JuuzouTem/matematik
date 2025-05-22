@@ -1,21 +1,194 @@
 :root {
-    --primary-color: #3498db; /* Modern Mavi */
+    /* Light Mode Color Palette */
+    --primary-color: #3498db;
     --primary-hover-color: #2980b9;
-    --secondary-color: #2ecc71; /* Modern Yeşil (Çözüm için) */
+    --primary-light-color: #5dade2;
+    --secondary-color: #2ecc71;
     --secondary-hover-color: #27ae60;
-    --info-color: #f39c12; /* Modern Turuncu/Sarı (Bilgi için) */
+    --secondary-light-color: #58d68d;
+    --info-color: #f39c12;
     --info-hover-color: #e67e22;
-    --background-color: #f4f7f6; /* Çok açık, neredeyse beyaz arka plan */
-    --card-background: #ffffff; /* Kartlar için saf beyaz */
-    --text-color: #333333; /* Koyu gri metin */
-    --light-text-color: #555555; /* Biraz daha açık metin */
-    --border-color: #e0e0e0; /* Hafif kenarlık rengi */
+    --info-light-color: #f5b041;
+
+    --background-color: #f0f4f8;
+    --card-background: #ffffff;
+    --text-color: #333333;
+    --light-text-color: #555555;
+    --border-color: #dde4e9;
+    --image-border-color: #e8e8e8;
+    --header-text-color: #ffffff; /* Explicit for header text */
+    --button-text-color: #ffffff; /* Explicit for gradient button text */
+
+
+    /* Gradients & Specific Element Colors - Light Mode */
+    --header-gradient-start: var(--primary-color);
+    --header-gradient-mid: var(--primary-hover-color);
+    --header-gradient-end: var(--secondary-color);
+    --header-bottom-border-color: var(--primary-hover-color);
+    --h1-text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+
+    --h2-border-gradient-start: var(--primary-color);
+    --h2-border-gradient-end: var(--secondary-color);
+
+    --info-content-bg: #fffaf0;
+    --info-content-border: var(--info-light-color);
+    --info-content-header-border: var(--info-color);
+    --info-content-top-gradient-start: var(--info-color);
+    --info-content-top-gradient-end: var(--info-light-color);
+
+    --solution-content-bg: #f0fff4;
+    --solution-content-border: var(--secondary-light-color);
+    --solution-content-header-border: var(--secondary-color);
+    --solution-content-top-gradient-start: var(--secondary-color);
+    --solution-content-top-gradient-end: var(--secondary-light-color);
+
+    --button-info-gradient-start: var(--info-light-color);
+    --button-info-gradient-end: var(--info-color);
+    --button-info-hover-gradient-start: var(--info-color);
+    --button-info-hover-gradient-end: var(--info-hover-color);
+
+    --button-solution-gradient-start: var(--secondary-light-color);
+    --button-solution-gradient-end: var(--secondary-color);
+    --button-solution-hover-gradient-start: var(--secondary-color);
+    --button-solution-hover-gradient-end: var(--secondary-hover-color);
+    
+    --bonus-button-gradient-start: var(--secondary-color);
+    --bonus-button-gradient-end: var(--secondary-hover-color);
+    --bonus-button-hover-gradient-start: var(--secondary-hover-color);
+    --bonus-button-hover-gradient-end: var(--secondary-color);
+    
+    --footer-gradient-start: #34495e;
+    --footer-gradient-end: #2c3e50;
+    --footer-text-color: #bdc3c7;
+    --footer-border-color: var(--primary-color);
+
+    --theme-toggle-bg: #fff;
+    --theme-toggle-icon-color: var(--primary-color); /* Moon color in light mode */
+    --theme-toggle-hover-bg: #f0f0f0;
+
+    /* Shadows - Light Mode */
+    --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.07);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.1);
+    --shadow-card-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
+    --shadow-button: 0 3px 6px rgba(0,0,0,0.1);
+    --shadow-button-hover: 0 6px 12px rgba(0,0,0,0.15);
+    --shadow-button-active: 0 2px 4px rgba(0,0,0,0.1);
+    --bonus-button-shadow-hover: rgba(46, 204, 113, 0.3); /* secondary-color's RGB */
+    --theme-toggle-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --header-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    --image-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+    /* Fonts */
     --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.1);
-    --border-radius-small: 6px;
-    --border-radius-medium: 10px;
+    
+    /* Radii & Transitions */
+    --border-radius-small: 8px;
+    --border-radius-medium: 12px;
+    --transition-speed-fast: 0.2s;
+    --transition-speed-normal: 0.3s;
+    --transition-speed-slow: 0.5s;
+}
+
+body.dark-mode {
+    /* Dark Mode Color Palette */
+    --primary-color: #5dade2;
+    --primary-hover-color: #7bc4ee; 
+    --primary-light-color: #85c1e9;
+    --secondary-color: #58d68d;
+    --secondary-hover-color: #82e0aa;
+    --secondary-light-color: #abebc6;
+    --info-color: #f5b041;
+    --info-hover-color: #f8c471;
+    --info-light-color: #f9e79f; /* Light yellow, used for sun icon */
+
+    --background-color: #1c1c27;
+    --card-background: #252535;
+    --text-color: #e0e6f0;
+    --light-text-color: #a0a8b8;
+    --border-color: #38384a;
+    --image-border-color: #4a4a5a;
+    /* --header-text-color: #ffffff; // Stays white, inherited from :root */
+    /* --button-text-color: #ffffff; // Stays white, inherited from :root */
+
+    /* Gradients & Specific Element Colors - Dark Mode */
+    --header-gradient-start: var(--primary-color);
+    --header-gradient-mid: #3e7ba2; 
+    --header-gradient-end: var(--secondary-color);
+    --header-bottom-border-color: var(--primary-hover-color);
+    --h1-text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+
+    --h2-border-gradient-start: var(--primary-color);
+    --h2-border-gradient-end: var(--secondary-color);
+
+    --info-content-bg: #2c2a23;
+    --info-content-border: var(--info-color);
+    --info-content-header-border: var(--info-color);
+    --info-content-top-gradient-start: var(--info-color);
+    --info-content-top-gradient-end: var(--info-light-color);
+
+    --solution-content-bg: #232c27;
+    --solution-content-border: var(--secondary-color);
+    --solution-content-header-border: var(--secondary-color);
+    --solution-content-top-gradient-start: var(--secondary-color);
+    --solution-content-top-gradient-end: var(--secondary-light-color);
+
+    --button-info-gradient-start: var(--info-light-color);
+    --button-info-gradient-end: var(--info-color);
+    --button-info-hover-gradient-start: var(--info-color);
+    --button-info-hover-gradient-end: var(--info-hover-color);
+
+    --button-solution-gradient-start: var(--secondary-light-color);
+    --button-solution-gradient-end: var(--secondary-color);
+    --button-solution-hover-gradient-start: var(--secondary-color);
+    --button-solution-hover-gradient-end: var(--secondary-hover-color);
+    
+    --bonus-button-gradient-start: var(--secondary-color);
+    --bonus-button-gradient-end: var(--secondary-hover-color);
+    --bonus-button-hover-gradient-start: var(--secondary-hover-color);
+    --bonus-button-hover-gradient-end: var(--secondary-color);
+        
+    --footer-gradient-start: #212f3c;
+    --footer-gradient-end: #1c2833;
+    --footer-text-color: #9099a3;
+    --footer-border-color: var(--primary-color);
+
+    --theme-toggle-bg: #2b2b3e;
+    --theme-toggle-icon-color: var(--info-light-color); /* Sun icon color in dark mode */
+    --theme-toggle-hover-bg: #3a3a52;
+
+    /* Shadows - Dark Mode */
+    --shadow-soft: 0 5px 20px rgba(0, 0, 0, 0.25);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.3);
+    --shadow-card-hover: 0 15px 40px rgba(0, 0, 0, 0.35);
+    --shadow-button: 0 3px 8px rgba(0,0,0,0.25);
+    --shadow-button-hover: 0 6px 15px rgba(0,0,0,0.3);
+    --shadow-button-active: 0 2px 5px rgba(0,0,0,0.2);
+    --bonus-button-shadow-hover: rgba(88, 214, 141, 0.4); /* Lighter secondary-color's RGB */
+    --theme-toggle-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    --header-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    --image-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+
+/* General Smoothness and Keyframes */
+@keyframes animatedGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes cardEntrance {
+    from { opacity: 0; transform: translateY(40px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 5px var(--secondary-light-color), 0 0 10px var(--secondary-light-color); }
+    50% { box-shadow: 0 0 15px var(--secondary-color), 0 0 25px var(--secondary-color); }
+    100% { box-shadow: 0 0 5px var(--secondary-light-color), 0 0 10px var(--secondary-light-color); }
 }
 
 * {
@@ -24,72 +197,114 @@
     padding: 0;
 }
 
+/* Universal Transitions for Smooth Theme Switching */
+body,
+.question-card,
+.content-area,
+header,
+footer,
+.toggle-button,
+.bonus-button,
+#darkModeToggle,
+.question-image,
+.content-area ul li::before { /* Added bullet for transition */
+    transition: background-color var(--transition-speed-normal) ease,
+                color var(--transition-speed-normal) ease,
+                border-color var(--transition-speed-normal) ease,
+                box-shadow var(--transition-speed-normal) ease,
+                filter var(--transition-speed-normal) ease; /* For image filter */
+}
+
+/* Transitions for properties using CSS gradients or border-image */
+header, .toggle-button, .bonus-button, .question-card h2, 
+.content-area::before, .info-content::before, .solution-content::before {
+    transition: background var(--transition-speed-normal) ease, /* Covers background-image */
+                border-image var(--transition-speed-normal) ease,
+                color var(--transition-speed-normal) ease, /* For h2 text, etc. */
+                box-shadow var(--transition-speed-normal) ease; /* If any of these also have shadows */
+}
+
+#darkModeToggle i {
+    transition: transform var(--transition-speed-normal) ease, color var(--transition-speed-normal) ease;
+}
+
+
 body {
     font-family: var(--font-main);
     line-height: 1.7;
     background-color: var(--background-color);
     color: var(--text-color);
-    padding-top: 90px; /* Header için boşluk */
+    padding-top: 100px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
 header {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover-color));
-    color: white;
-    padding: 0.8rem 1rem;
+    background: linear-gradient(135deg, var(--header-gradient-start), var(--header-gradient-mid), var(--header-gradient-end));
+    background-size: 250% 250%;
+    animation: animatedGradient 12s ease infinite;
+    color: var(--header-text-color);
+    padding: 1rem 1rem;
     text-align: center;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: var(--header-shadow);
+    border-bottom: 3px solid var(--header-bottom-border-color);
 }
 
 header h1 {
     font-family: var(--font-heading);
-    margin-bottom: 0.4rem;
-    font-size: 2.4rem;
+    margin-bottom: 0.3rem;
+    font-size: 2.6rem;
     font-weight: 700;
     letter-spacing: -0.5px;
+    text-shadow: var(--h1-text-shadow);
+    color: var(--header-text-color);
 }
 
 header p {
-    font-size: 1.1rem;
-    opacity: 0.9;
+    font-size: 1.15rem;
+    opacity: 0.95;
     font-weight: 400;
+    color: var(--header-text-color);
 }
 
 main {
     padding: 2.5rem 1rem;
-    max-width: 850px; /* Biraz daralttım, daha iyi okunabilirlik için */
-    margin: 30px auto;
+    max-width: 850px;
+    margin: 40px auto;
 }
 
 .question-card {
     background-color: var(--card-background);
     border-radius: var(--border-radius-medium);
-    margin-bottom: 2.5rem;
-    padding: 2rem;
+    margin-bottom: 3rem;
+    padding: 2.2rem;
     box-shadow: var(--shadow-soft);
     border: 1px solid var(--border-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden; /* İçerik taşmalarını engellemek için */
+    overflow: hidden;
+    animation: cardEntrance var(--transition-speed-slow) ease-out forwards;
+    position: relative;
 }
 
 .question-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-medium);
+    transform: perspective(1500px) translateY(-8px) rotateX(2deg) rotateY(4deg) scale(1.02);
+    box-shadow: var(--shadow-card-hover);
 }
 
 .question-card h2 {
     font-family: var(--font-heading);
     color: var(--primary-color);
-    margin-bottom: 1.5rem; /* Artırdım */
-    padding-bottom: 0.8rem; /* Artırdım */
-    border-bottom: 2px solid var(--primary-color);
-    font-size: 1.8rem; /* Biraz büyüttüm */
+    margin-bottom: 1.8rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid; 
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, var(--h2-border-gradient-start), var(--h2-border-gradient-end));
+    font-size: 1.9rem;
     font-weight: 600;
 }
 
@@ -97,229 +312,298 @@ main {
     max-width: 100%;
     height: auto;
     border-radius: var(--border-radius-small);
-    margin-bottom: 2rem; /* Artırdım */
-    border: 1px solid #f0f0f0; /* Daha hafif kenarlık */
+    margin-bottom: 2.2rem;
+    border: 1px solid var(--image-border-color);
     display: block;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: var(--image-shadow);
+}
+body.dark-mode .question-image {
+    filter: brightness(0.88) contrast(1.02); 
+}
+
+.question-card:hover .question-image {
+    transform: scale(1.03);
 }
 
 .actions {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem; /* Artırdım */
+    gap: 1.2rem;
+    margin-bottom: 2.2rem;
     flex-wrap: wrap;
 }
 
 .toggle-button {
-    color: white;
+    color: var(--button-text-color);
     border: none;
-    padding: 0.8rem 1.6rem; /* Boyutları ayarladım */
+    padding: 0.9rem 1.8rem;
     border-radius: var(--border-radius-small);
     cursor: pointer;
-    font-size: 0.95rem; /* Biraz büyüttüm */
+    font-size: 1rem;
     font-weight: 600;
     font-family: var(--font-heading);
-    transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    gap: 0.7rem;
+    box-shadow: var(--shadow-button);
+    position: relative;
+    overflow: hidden;
+}
+
+.toggle-button:before { /* Shine effect */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+    transition: left var(--transition-speed-slow) ease;
+}
+body.dark-mode .toggle-button:before { /* Subtle shine for dark mode */
+    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+}
+
+.toggle-button:hover:before {
+    left: 100%;
 }
 
 .toggle-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: var(--shadow-button-hover);
 }
 .toggle-button:active {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transform: translateY(-2px) scale(0.98);
+    box-shadow: var(--shadow-button-active);
 }
 
 .toggle-button.info-btn {
-    background-color: var(--info-color);
+    background-image: linear-gradient(135deg, var(--button-info-gradient-start), var(--button-info-gradient-end));
 }
 .toggle-button.info-btn:hover {
-    background-color: var(--info-hover-color);
+    background-image: linear-gradient(135deg, var(--button-info-hover-gradient-start), var(--button-info-hover-gradient-end));
 }
 
 .toggle-button.solution-btn {
-    background-color: var(--secondary-color);
+    background-image: linear-gradient(135deg, var(--button-solution-gradient-start), var(--button-solution-gradient-end));
 }
 .toggle-button.solution-btn:hover {
-    background-color: var(--secondary-hover-color);
+    background-image: linear-gradient(135deg, var(--button-solution-hover-gradient-start), var(--button-solution-hover-gradient-end));
 }
 
 .toggle-button i {
-    font-size: 1.1em; /* İkonları biraz büyüttüm */
+    font-size: 1.15em;
+    transition: transform var(--transition-speed-fast) ease;
 }
+.toggle-button:hover i {
+    transform: scale(1.1) rotate(3deg);
+}
+
+.toggle-button.solution-btn:hover i.fa-lightbulb {
+    animation: pulseGlow 1.5s infinite;
+    color: #fff59d; /* Specific bright color for bulb, good for both modes */
+}
+
 
 .content-area {
-    padding: 1.8rem; /* Artırdım */
+    padding: 2rem;
     border-radius: var(--border-radius-small);
-    margin-top: 1.5rem; /* Artırdım */
+    margin-top: 1.8rem;
     border-width: 1px;
     border-style: solid;
-    animation: fadeIn 0.4s ease-out;
+    animation: fadeIn var(--transition-speed-normal) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    position: relative;
+    /* Background color and border color are set by .info-content or .solution-content */
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-15px); }
-    to { opacity: 1; transform: translateY(0); }
+.content-area:before { /* Decorative top border */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    border-top-left-radius: var(--border-radius-small);
+    border-top-right-radius: var(--border-radius-small);
+    /* background is set by .info-content or .solution-content */
 }
 
 .info-content {
-    background-color: #fff8e1; /* Daha sıcak bir bilgi arka planı */
-    border-color: var(--info-color);
-    border-left: 4px solid var(--info-color);
+    background-color: var(--info-content-bg);
+    border-color: var(--info-content-border);
+}
+.info-content:before {
+    background: linear-gradient(to right, var(--info-content-top-gradient-start), var(--info-content-top-gradient-end));
 }
 
 .solution-content {
-    background-color: #e8f5e9; /* Daha yumuşak bir çözüm arka planı */
-    border-color: var(--secondary-color);
-    border-left: 4px solid var(--secondary-color);
+    background-color: var(--solution-content-bg);
+    border-color: var(--solution-content-border);
+}
+.solution-content:before {
+    background: linear-gradient(to right, var(--solution-content-top-gradient-start), var(--solution-content-top-gradient-end));
 }
 
 .content-area h3 {
     font-family: var(--font-heading);
-    color: var(--text-color);
-    margin-bottom: 1rem;
-    font-size: 1.3rem; /* Biraz büyüttüm */
+    color: var(--text-color); 
+    margin-bottom: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 600;
+    padding-left: 10px;
+    border-left: 4px solid; 
+    /* border-left-color is set by .info-content or .solution-content */
 }
 
+.info-content h3 { border-left-color: var(--info-content-header-border); }
+.solution-content h3 { border-left-color: var(--solution-content-header-border); }
+
+
 .content-area p, .content-area ul, .content-area ol {
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
     color: var(--light-text-color);
-    font-size: 1rem; /* Metin boyutunu standartlaştırdım */
+    font-size: 1.05rem;
 }
 .content-area strong {
     color: var(--text-color);
     font-weight: 600;
 }
 
-.content-area ul, .content-area ol {
-    padding-left: 1.8rem; /* Daha fazla iç boşluk */
-}
-.content-area ul li, .content-area ol li {
-    margin-bottom: 0.5rem;
+.content-area ul, .content-area ol { padding-left: 2rem; }
+.content-area ul { list-style: none; }
+.content-area ul li, .content-area ol li { margin-bottom: 0.6rem; position: relative; }
+.content-area ul li { padding-left: 1.5em; }
+
+.content-area ul li::before { /* Bullet point */
+    content: '';
+    position: absolute;
+    left: 0.3em; 
+    top: 0.7em;
+    transform: translateY(-50%); 
+    width: 7px; 
+    height: 7px; 
+    background-color: var(--primary-color); 
+    border-radius: 50%;
 }
 
-/* Madde işaretlerini ve numaralarını daha şık yapalım */
-.content-area ul li::marker {
-    color: var(--primary-color);
-    font-size: 1.1em;
-}
 .content-area ol li::marker {
-    color: var(--primary-color);
-    font-weight: 600;
+    color: var(--primary-.color);
+    font-weight: 700;
+    font-size: 1.05em;
 }
 
 
 footer {
     text-align: center;
-    padding: 2rem; /* Artırdım */
-    background-color: #2c3e50; /* Koyu Mavi-Gri footer */
-    color: #ecf0f1; /* Açık gri footer metni */
-    margin-top: 3rem; /* Artırdım */
-    font-size: 0.9rem;
+    padding: 2.5rem 1rem;
+    background: linear-gradient(135deg, var(--footer-gradient-start), var(--footer-gradient-end));
+    color: var(--footer-text-color);
+    margin-top: 4rem;
+    font-size: 0.95rem;
+    border-top: 3px solid var(--footer-border-color);
 }
 
-/* Fontları ekleyelim (HTML'e Google Fonts linki de eklenmeli) */
-/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap'); */
-/* Bu satırı HTML'deki head içine <link> olarak eklemek daha performanslıdır. */
-/* Zaten HTML'de var, o yüzden burada yoruma aldım. */
+footer p { margin-bottom: 1rem; }
+
+.bonus-button {
+    display: inline-block;
+    background-image: linear-gradient(135deg, var(--bonus-button-gradient-start), var(--bonus-button-gradient-end));
+    color: var(--button-text-color);
+    padding: 0.9rem 1.8rem;
+    border-radius: var(--border-radius-small);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    margin-top: 1rem;
+    box-shadow: var(--shadow-button);
+    position: relative;
+    overflow: hidden;
+}
+
+.bonus-button:before { /* Shine effect */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
+    transition: left var(--transition-speed-slow) ease;
+}
+body.dark-mode .bonus-button:before {
+    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
+}
+
+.bonus-button:hover:before { left: 100%; }
+
+.bonus-button:hover {
+    background-image: linear-gradient(135deg, var(--bonus-button-hover-gradient-start), var(--bonus-button-hover-gradient-end));
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 6px 12px var(--bonus-button-shadow-hover);
+}
+
+.bonus-button:active {
+    transform: translateY(-2px) scale(0.98);
+    box-shadow: var(--shadow-button-active);
+}
+
+
+/* Dark Mode Toggle Button Styles */
+#darkModeToggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    background-color: var(--theme-toggle-bg);
+    color: var(--theme-toggle-icon-color); /* This sets the icon color */
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem; /* Overall size reference for the icon container */
+    cursor: pointer;
+    box-shadow: var(--theme-toggle-shadow);
+    z-index: 1001;
+    outline: none;
+}
+
+#darkModeToggle:hover {
+    background-color: var(--theme-toggle-hover-bg);
+    transform: translateY(-2px) scale(1.05);
+}
+#darkModeToggle:active {
+    transform: translateY(0px) scale(0.95);
+}
+/* The <i> tag inside #darkModeToggle will inherit its color from #darkModeToggle's color property */
+#darkModeToggle.icon-changing i.fa-moon { transform: rotate(-180deg) scale(0.5); opacity: 0; }
+#darkModeToggle.icon-changing i.fa-sun { transform: rotate(180deg) scale(0.5); opacity: 0; }
 
 
 /* Mobil uyumluluk iyileştirmeleri */
 @media (max-width: 768px) {
-    body {
-        padding-top: 80px; /* Header küçülebilir */
-    }
-    header h1 {
-        font-size: 2rem;
-    }
-    header p {
-        font-size: 1rem;
-    }
-    main {
-        padding: 2rem 0.8rem;
-    }
-    .question-card {
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-    }
-    .question-card h2 {
-        font-size: 1.5rem;
-    }
-    .actions {
-        flex-direction: column;
-    }
-    .toggle-button {
-        width: 100%;
-        justify-content: center;
-        padding: 0.9rem 1rem; /* Mobil için buton padding'i */
-    }
-    .content-area {
-        padding: 1.5rem;
-    }
-    .content-area h3 {
-        font-size: 1.2rem;
-    }
-    .content-area p, .content-area ul, .content-area ol {
-        font-size: 0.95rem;
-    }
+    body { padding-top: 85px; }
+    header h1 { font-size: 2.1rem; }
+    header p { font-size: 1rem; }
+    main { padding: 2rem 0.8rem; }
+    .question-card { padding: 1.8rem; margin-bottom: 2.2rem; }
+    .question-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: var(--shadow-card-hover); }
+    .question-card h2 { font-size: 1.6rem; }
+    .actions { flex-direction: column; gap: 0.8rem; }
+    .toggle-button, .bonus-button { width: 100%; justify-content: center; padding: 1rem; font-size: 0.95rem; }
+    .content-area { padding: 1.5rem; }
+    .content-area h3 { font-size: 1.25rem; }
+    .content-area p, .content-area ul, .content-area ol { font-size: 1rem; }
+    #darkModeToggle { top: 15px; right: 15px; width: 44px; height: 44px; font-size: 1.2rem; }
 }
 
 @media (max-width: 480px) {
-    header h1 {
-        font-size: 1.7rem;
-    }
-    header p {
-        font-size: 0.9rem;
-    }
-    .question-card h2 {
-        font-size: 1.3rem;
-    }
-    .toggle-button {
-        font-size: 0.9rem;
-    }
-}
-
-/* Footer içindeki bonus soru butonu için stiller */
-.bonus-button {
-    display: inline-block;
-    background-color: var(--secondary-color); /* Yeşil renk kullandım, isterseniz --primary-color da olabilir */
-    color: white;
-    padding: 0.8rem 1.6rem;
-    border-radius: var(--border-radius-small);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 600;
-    font-family: var(--font-heading);
-    transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    margin-top: 1rem; /* Üstteki paragraftan boşluk bırakmak için */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    text-align: center;
-    cursor: pointer;
-}
-
-.bonus-button:hover {
-    background-color: var(--secondary-hover-color); /* Butonun hover rengi */
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.bonus-button:active {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-/* Mobil uyumluluk için footer'daki butonu da ayarlayabiliriz */
-@media (max-width: 768px) {
-    .bonus-button {
-        padding: 0.9rem 1rem; /* Mobil için buton padding'i */
-        width: auto; /* Eğer toggle-buttonlar gibi tam genişlik olmasın isteniyorsa */
-        /* width: 100%; */ /* Eğer tam genişlikte bir buton isteniyorsa bu satırı aktif edin */
-    }
+    header h1 { font-size: 1.8rem; }
+    header p { font-size: 0.9rem; }
+    .question-card h2 { font-size: 1.4rem; }
+    .toggle-button, .bonus-button { font-size: 0.9rem; }
+    #darkModeToggle { width: 40px; height: 40px; font-size: 1.1rem; }
 }

@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'question-card';
         card.id = q.id;
 
-        let displayTitle = q.title; // Use the title from questionsData
+        let displayTitle = q.title;
 
         card.innerHTML = `
             <h2>${displayTitle}</h2>
@@ -333,21 +333,58 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetId = button.dataset.target;
             const targetElement = document.getElementById(targetId);
             
-            if (targetElement.style.display === 'none') {
-                targetElement.style.display = 'block';
-                if (button.classList.contains('info-btn')) {
-                    button.innerHTML = `<i class="fas fa-eye-slash"></i> Bilgiyi Gizle`;
-                } else {
-                    button.innerHTML = `<i class="fas fa-eye-slash"></i> Cevabı Gizle`;
-                }
+            const isOpening = targetElement.style.display === 'none';
+            targetElement.style.display = isOpening ? 'block' : 'none';
+            
+            const iconClass = button.classList.contains('info-btn') ? 'fa-info-circle' : 'fa-lightbulb';
+            const eyeIcon = 'fa-eye-slash';
+            const originalText = button.classList.contains('info-btn') ? 'Bilgi' : 'Cevabı';
+
+            if (isOpening) {
+                button.innerHTML = `<i class="fas ${eyeIcon}"></i> ${originalText} Gizle`;
             } else {
-                targetElement.style.display = 'none';
-                if (button.classList.contains('info-btn')) {
-                    button.innerHTML = `<i class="fas fa-info-circle"></i> Bilgi Göster`;
-                } else {
-                    button.innerHTML = `<i class="fas fa-lightbulb"></i> Cevabı Göster`;
-                }
+                button.innerHTML = `<i class="fas ${iconClass}"></i> ${originalText} Göster`;
             }
         });
     });
+
+    // Dark Mode Toggle Logic
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const moonIcon = '<i class="fas fa-moon"></i>';
+    const sunIcon = '<i class="fas fa-sun"></i>';
+
+    const setInitialTheme = () => {
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            if(darkModeToggle) darkModeToggle.innerHTML = sunIcon;
+        } else {
+            // Default to light mode if no preference or preference is light
+            body.classList.remove('dark-mode'); // Ensure it's not there if set to light
+            if(darkModeToggle) darkModeToggle.innerHTML = moonIcon;
+        }
+    };
+
+    setInitialTheme(); // Set theme on initial load
+
+    if(darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            
+            // Add a class to trigger icon animation
+            darkModeToggle.classList.add('icon-changing');
+            // Remove class after animation to allow re-triggering
+            setTimeout(() => darkModeToggle.classList.remove('icon-changing'), 300); // Match CSS transition duration
+
+            if (isDarkMode) {
+                localStorage.setItem('theme', 'dark');
+                darkModeToggle.innerHTML = sunIcon;
+            } else {
+                localStorage.setItem('theme', 'light');
+                darkModeToggle.innerHTML = moonIcon;
+            }
+        });
+    }
 });

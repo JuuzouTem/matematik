@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Çember ve Yay Uzunluğu Sorusu</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,7 +36,6 @@
 
         .diagram-placeholder {
             flex: 0 0 200px; /* Görsel için sabit genişlik (isteğe bağlı değiştirilebilir) */
-            /* width: 200px;  Yukarıdaki flex-basis ile aynı işlevi görür */
             height: auto; /* Yükseklik içeriğe (görsele) göre ayarlanır */
             border: 1px solid #ccc;
             background-color: #e9ecef;
@@ -60,23 +60,51 @@
             padding: 2px 5px;
             border-radius: 3px;
         }
-        .calculations .blank {
-            display: inline-block;
-            width: 50px;
-            border-bottom: 1px solid #555;
+        
+        /* Styling for the input fields to replace spans */
+        .blank-input {
+            border: none;
+            border-bottom: 2px solid #555;
             text-align: center;
             font-weight: bold;
+            font-size: inherit;
+            font-family: inherit;
+            padding-bottom: 1px;
+            margin: 0 2px;
+            box-sizing: border-box; /* Ensures padding and border are included in width */
         }
+        .blank-input:focus {
+            outline: none;
+            border-bottom-color: #3498db; /* Blue focus */
+        }
+        .blank-input.correct-answer {
+            border-bottom-color: #27ae60; /* Green */
+            color: #27ae60;
+        }
+        .blank-input.incorrect-answer {
+            border-bottom-color: #e74c3c; /* Red */
+            color: #e74c3c;
+        }
+        /* Specific widths for input fields */
+        #pqArcInput, #roArcInput, #totalDistanceInput {
+            width: 50px;
+        }
+        #finalLengthInput {
+            width: 60px;
+        }
+
         .final-statement {
             margin-top: 15px; /* Hesaplamalar ve son ifade arasına biraz boşluk */
         }
-        .final-statement .blank {
+        /* Keep original styling for answer section blanks if needed, but they are replaced by strong tags */
+        .final-statement .blank { 
             display: inline-block;
             width: 60px;
             border-bottom: 1px solid #555;
             text-align: center;
             font-weight: bold;
         }
+        
         button {
             background-color: #3498db;
             color: white;
@@ -87,6 +115,7 @@
             display: inline-block;
             font-size: 16px;
             margin-top: 20px;
+            margin-right: 10px; /* Space between buttons */
             cursor: pointer;
             border-radius: 5px;
             transition: background-color 0.3s ease;
@@ -94,6 +123,25 @@
         button:hover {
             background-color: #2980b9;
         }
+        #checkAnswersBtn {
+            background-color: #2ecc71; /* Green for check button */
+        }
+        #checkAnswersBtn:hover {
+            background-color: #27ae60;
+        }
+
+        #feedbackMessage {
+            margin-top: 15px;
+            font-weight: bold;
+            min-height: 20px; /* To prevent layout shift */
+        }
+        .feedback-correct {
+            color: #27ae60;
+        }
+        .feedback-incorrect {
+            color: #e74c3c;
+        }
+
         .answer-section {
             margin-top: 20px;
             padding: 15px;
@@ -126,19 +174,21 @@
                 <p>Sally, sanat eserinin bir parçası olarak, bir miktar teli bükerek görseldeki şekli oluşturuyor. Şekil, bir yarım daire ve bir çeyrek daireden oluşmaktadır. Telin toplam uzunluğunu bulunuz. (π ≈ 3 alınız)</p>
                 <div class="calculations">
                     <p><b>PQ yarım daire yayının uzunluğu</b></p>
-                    <p>= <span class="blank">?</span> cm</p>
+                    <p>= <input type="text" id="pqArcInput" class="blank-input" data-answer="36"> cm</p>
                     <br>
                     <p><b>RO çeyrek daire yayının uzunluğu</b></p>
-                    <p>= <span class="blank">?</span> cm</p>
+                    <p>= <input type="text" id="roArcInput" class="blank-input" data-answer="18"> cm</p>
                     <br>
                     <p><b>Şeklin etrafındaki toplam mesafe (Telin Uzunluğu)</b></p>
-                    <p>= <span class="blank">?</span> cm</p>
+                    <p>= <input type="text" id="totalDistanceInput" class="blank-input" data-answer="78"> cm</p>
                 </div>
-                <p class="final-statement">Telin uzunluğu yaklaşık olarak <span class="blank">?</span> santimetredir.</p>
+                <p class="final-statement">Telin uzunluğu yaklaşık olarak <input type="text" id="finalLengthInput" class="blank-input" data-answer="78"> santimetredir.</p>
             </div>
         </div>
 
+        <button id="checkAnswersBtn">Cevapları Kontrol Et</button>
         <button id="showAnswerBtn">Cevabı Göster</button>
+        <p id="feedbackMessage"></p>
 
         <div id="answerSection" class="answer-section">
             <h4>Detaylı Çözüm:</h4>
@@ -173,7 +223,7 @@
 
             <p><b>Sonuç:</b> Telin uzunluğu yaklaşık olarak <strong class="result">78</strong> santimetredir.</p>
             <hr>
-            <p><em>Not: Sorudaki boşlukları dolduracak olursak:</em></p>
+            <p><em>Not: Sorudaki boşlukları dolduracak olursak (bunlar çözümdeki değerlerdir, yukarıya kendi cevaplarınızı giriniz):</em></p>
             <p><b>PQ yarım daire yayının uzunluğu</b></p>
             <p>= <strong style="color:blue;">36</strong> cm</p>
             <br>
@@ -189,6 +239,15 @@
     <script>
         const showAnswerBtn = document.getElementById('showAnswerBtn');
         const answerSection = document.getElementById('answerSection');
+        const checkAnswersBtn = document.getElementById('checkAnswersBtn');
+        const feedbackMessage = document.getElementById('feedbackMessage');
+
+        const inputFields = [
+            document.getElementById('pqArcInput'),
+            document.getElementById('roArcInput'),
+            document.getElementById('totalDistanceInput'),
+            document.getElementById('finalLengthInput')
+        ];
 
         showAnswerBtn.addEventListener('click', () => {
             if (answerSection.style.display === 'none' || answerSection.style.display === '') {
@@ -199,6 +258,60 @@
                 showAnswerBtn.textContent = 'Cevabı Göster';
             }
         });
+
+        checkAnswersBtn.addEventListener('click', () => {
+            let allCorrect = true;
+            feedbackMessage.textContent = ''; // Clear previous feedback
+
+            inputFields.forEach(input => {
+                input.classList.remove('correct-answer', 'incorrect-answer'); // Reset classes
+                const userAnswer = input.value.trim();
+                const correctAnswer = input.dataset.answer;
+                
+                // Robust comparison by converting to numbers
+                const userNum = Number(userAnswer);
+                const correctNum = Number(correctAnswer);
+
+                if (userAnswer === '') { // Empty field considered incorrect
+                    input.classList.add('incorrect-answer');
+                    allCorrect = false;
+                } else if (!isNaN(userNum) && userNum === correctNum) {
+                    input.classList.add('correct-answer');
+                } else {
+                    input.classList.add('incorrect-answer');
+                    allCorrect = false;
+                }
+            });
+
+            if (allCorrect) {
+                feedbackMessage.textContent = 'Tebrikler! Tüm cevaplar doğru.';
+                feedbackMessage.className = 'feedback-correct';
+                rainConfetti();
+            } else {
+                feedbackMessage.textContent = 'Bazı cevaplar hatalı veya eksik. Lütfen kontrol edin.';
+                feedbackMessage.className = 'feedback-incorrect';
+            }
+        });
+
+        function rainConfetti() {
+            var end = Date.now() + (3 * 1000); // Confetti for 3 seconds
+
+            (function frame() {
+                confetti({
+                    particleCount: 3, // More subtle rain
+                    angle: 270, // Shoot straight down
+                    spread: 65, // How wide the "rain" is
+                    origin: { x: Math.random(), y: 0 - 0.1 }, // Random x, start slightly above the top
+                    gravity: 0.6 + Math.random() * 0.4, // Vary gravity for more natural fall
+                    drift: Math.random() * 0.2 - 0.1, // Slight random horizontal drift
+                    ticks: 300 // Duration of particles
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
     </script>
 </body>
 </html>

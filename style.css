@@ -285,3 +285,41 @@ footer {
         font-size: 0.9rem;
     }
 }
+
+/* Footer içindeki bonus soru butonu için stiller */
+.bonus-button {
+    display: inline-block;
+    background-color: var(--secondary-color); /* Yeşil renk kullandım, isterseniz --primary-color da olabilir */
+    color: white;
+    padding: 0.8rem 1.6rem;
+    border-radius: var(--border-radius-small);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 1rem; /* Üstteki paragraftan boşluk bırakmak için */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    text-align: center;
+    cursor: pointer;
+}
+
+.bonus-button:hover {
+    background-color: var(--secondary-hover-color); /* Butonun hover rengi */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.bonus-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Mobil uyumluluk için footer'daki butonu da ayarlayabiliriz */
+@media (max-width: 768px) {
+    .bonus-button {
+        padding: 0.9rem 1rem; /* Mobil için buton padding'i */
+        width: auto; /* Eğer toggle-buttonlar gibi tam genişlik olmasın isteniyorsa */
+        /* width: 100%; */ /* Eğer tam genişlikte bir buton isteniyorsa bu satırı aktif edin */
+    }
+}

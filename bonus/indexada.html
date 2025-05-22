@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çember ve Yay Uzunluğu Sorusu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 900px; /* Sayfanın çok genişlemesini önlemek için */
+            margin: 0 auto; /* Ortalamak için */
+        }
+        .question-title {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px; /* Başlık ve içerik arasına boşluk */
+        }
+
+        .question-layout {
+            display: flex;
+            align-items: flex-start; /* Dikeyde üste hizalama */
+            gap: 20px; /* Görsel ve metin arasında boşluk */
+        }
+
+        .diagram-placeholder {
+            flex: 0 0 200px; /* Görsel için sabit genişlik (isteğe bağlı değiştirilebilir) */
+            /* width: 200px;  Yukarıdaki flex-basis ile aynı işlevi görür */
+            height: auto; /* Yükseklik içeriğe (görsele) göre ayarlanır */
+            border: 1px solid #ccc;
+            background-color: #e9ecef;
+            padding: 0; /* Görselin kutuyu tamamen kaplaması için */
+        }
+        .diagram-placeholder img {
+            width: 100%; /* Placeholder'ın genişliğini tamamen kullanır */
+            height: auto; /* Oranını koruyarak yüksekliği ayarlar */
+            display: block; /* Altında gereksiz boşluk oluşmasını engeller */
+        }
+
+        .question-details {
+            flex: 1; /* Kalan tüm yatay alanı kaplar */
+        }
+
+        .calculations p {
+            margin: 8px 0;
+        }
+        .calculations .formula {
+            font-family: "Courier New", Courier, monospace;
+            background-color: #eee;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .calculations .blank {
+            display: inline-block;
+            width: 50px;
+            border-bottom: 1px solid #555;
+            text-align: center;
+            font-weight: bold;
+        }
+        .final-statement {
+            margin-top: 15px; /* Hesaplamalar ve son ifade arasına biraz boşluk */
+        }
+        .final-statement .blank {
+            display: inline-block;
+            width: 60px;
+            border-bottom: 1px solid #555;
+            text-align: center;
+            font-weight: bold;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .answer-section {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px dashed #3498db;
+            background-color: #eaf5ff;
+            border-radius: 5px;
+            display: none; /* Başlangıçta gizli */
+        }
+        .answer-section h4 {
+            color: #2980b9;
+        }
+        .answer-section .step {
+            margin-bottom: 10px;
+        }
+        .answer-section .result {
+            font-weight: bold;
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3 class="question-title">3. Soru: Tel Uzunluğu Problemi</h3>
+
+        <div class="question-layout">
+            <div class="diagram-placeholder">
+                <img src="çember_soru.png" alt="Çember ve yay uzunluğu sorusu şekli">
+            </div>
+            <div class="question-details">
+                <p>Sally, sanat eserinin bir parçası olarak, bir miktar teli bükerek görseldeki şekli oluşturuyor. Şekil, bir yarım daire ve bir çeyrek daireden oluşmaktadır. Telin toplam uzunluğunu bulunuz. (π ≈ 3 alınız)</p>
+                <div class="calculations">
+                    <p><b>PQ yarım daire yayının uzunluğu</b></p>
+                    <p>= <span class="blank">?</span> cm</p>
+                    <br>
+                    <p><b>RO çeyrek daire yayının uzunluğu</b></p>
+                    <p>= <span class="blank">?</span> cm</p>
+                    <br>
+                    <p><b>Şeklin etrafındaki toplam mesafe (Telin Uzunluğu)</b></p>
+                    <p>= <span class="blank">?</span> cm</p>
+                </div>
+                <p class="final-statement">Telin uzunluğu yaklaşık olarak <span class="blank">?</span> santimetredir.</p>
+            </div>
+        </div>
+
+        <button id="showAnswerBtn">Cevabı Göster</button>
+
+        <div id="answerSection" class="answer-section">
+            <h4>Detaylı Çözüm:</h4>
+            <p>Verilenler: Yarıçap (r) = 12 cm, π ≈ 3</p>
+
+            <div class="step">
+                <p><b>1. PQ yarım daire yayının uzunluğu:</b></p>
+                <p>Formül: <span class="formula">Yay_Uzunluğu = (1/2) ⋅ 2πr = πr</span></p>
+                <p>Hesaplama: ≈ <span class="formula">3 ⋅ 12</span></p>
+                <p class="result">PQ yayı ≈ 36 cm</p>
+            </div>
+
+            <div class="step">
+                <p><b>2. RO çeyrek daire yayının uzunluğu:</b></p>
+                <p>Formül: <span class="formula">Yay_Uzunluğu = (1/4) ⋅ 2πr = (1/2)πr</span></p>
+                <p>Hesaplama: ≈ <span class="formula">(1/2) ⋅ 3 ⋅ 12 = 0.5 ⋅ 3 ⋅ 12</span></p>
+                <p class="result">RO yayı ≈ 18 cm</p>
+            </div>
+
+            <div class="step">
+                <p><b>3. Doğrusal parçaların uzunlukları:</b></p>
+                <p>RP = Yarıçap = 12 cm (Çeyrek dairenin dik kenarı)</p>
+                <p>OQ = Yarıçap = 12 cm (Yarım dairenin yarıçapı, doğrusal parça)</p>
+            </div>
+
+            <div class="step">
+                <p><b>4. Telin toplam uzunluğu:</b></p>
+                <p>Toplam Uzunluk = PQ yayı + RO yayı + RP + OQ</p>
+                <p>Hesaplama: ≈ <span class="formula">36 + 18 + 12 + 12</span></p>
+                <p class="result">Toplam Uzunluk ≈ 78 cm</p>
+            </div>
+
+            <p><b>Sonuç:</b> Telin uzunluğu yaklaşık olarak <strong class="result">78</strong> santimetredir.</p>
+            <hr>
+            <p><em>Not: Sorudaki boşlukları dolduracak olursak:</em></p>
+            <p><b>PQ yarım daire yayının uzunluğu</b></p>
+            <p>= <strong style="color:blue;">36</strong> cm</p>
+            <br>
+            <p><b>RO çeyrek daire yayının uzunluğu</b></p>
+            <p>= <strong style="color:blue;">18</strong> cm</p>
+            <br>
+            <p><b>Şeklin etrafındaki toplam mesafe (Telin Uzunluğu)</b></p>
+            <p>= <strong style="color:blue;">78</strong> cm</p>
+            <p class="final-statement">Telin uzunluğu yaklaşık olarak <span class="blank" style="border-bottom: 1px solid #555; color:blue; font-weight:bold;">78</span> santimetredir.</p>
+        </div>
+    </div>
+
+    <script>
+        const showAnswerBtn = document.getElementById('showAnswerBtn');
+        const answerSection = document.getElementById('answerSection');
+
+        showAnswerBtn.addEventListener('click', () => {
+            if (answerSection.style.display === 'none' || answerSection.style.display === '') {
+                answerSection.style.display = 'block';
+                showAnswerBtn.textContent = 'Cevabı Gizle';
+            } else {
+                answerSection.style.display = 'none';
+                showAnswerBtn.textContent = 'Cevabı Göster';
+            }
+        });
+    </script>
+</body>
+</html>
